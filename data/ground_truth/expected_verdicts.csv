@@ -1,0 +1,13 @@
+bid_id,criterion_id,criterion_name,expected_verdict,notes
+BID-A,C001,Average Annual Turnover,PASS,"Rs 6 Crore from CA cert, threshold Rs 5 Crore"
+BID-A,C002,Similar Works Experience,PASS,"5 projects, threshold 3"
+BID-A,C003,GST Registration,PASS,Valid GSTIN found
+BID-A,C004,EMD / Bank Guarantee,PASS,BG 10L valid till Aug 2026
+BID-A,C005,Near Relations Declaration,PASS,Clear declaration
+BID-A,C006,Integrity Pact,PASS,Signed copy attached
+BID-B,C001,Average Annual Turnover,PASS,"Rs 7.5 Crore, threshold Rs 5 Crore"
+BID-B,C002,Similar Works Experience,FAIL,"1 project < threshold 3"
+BID-B,C003,GST Registration,PASS,Valid GSTIN
+BID-B,C004,EMD / Bank Guarantee,PASS,Valid BG
+BID-C,C001,Average Annual Turnover,AMBIGUOUS,"Handwritten CA cert conflicts with cover letter"
+BID-C,C005,Near Relations Declaration,AMBIGUOUS,Declaration unclear

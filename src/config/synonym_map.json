@@ -1,0 +1,103 @@
+{
+  "annual_turnover": [
+    "Annual Turnover",
+    "Gross Revenue",
+    "Annual Sales",
+    "Net Receipts",
+    "Average Annual Turnover",
+    "Yearly Turnover",
+    "वार्षिक कारोबार",
+    "सालाना टर्नओवर"
+  ],
+  "similar_works": [
+    "Similar Works",
+    "Similar Nature Works",
+    "Experience of Similar Works",
+    "Similar Projects Completed",
+    "Relevant Experience",
+    "समान कार्य अनुभव",
+    "समान प्रकृति के कार्य"
+  ],
+  "years_in_operation": [
+    "Years in Operation",
+    "Years of Experience",
+    "Years in Business",
+    "Firm Age",
+    "Date of Incorporation",
+    "व्यापार में वर्ष",
+    "अनुभव के वर्ष"
+  ],
+  "gst_registration": [
+    "GST Registration",
+    "GSTIN",
+    "GST Certificate",
+    "Goods and Services Tax",
+    "जीएसटी पंजीकरण",
+    "जीएसटीआईएन"
+  ],
+  "pan_card": [
+    "PAN Card",
+    "Permanent Account Number",
+    "PAN",
+    "Income Tax PAN",
+    "पैन कार्ड",
+    "स्थायी खाता संख्या"
+  ],
+  "iso_certification": [
+    "ISO Certification",
+    "ISO 9001",
+    "ISO 9001:2015",
+    "Quality Management Certification",
+    "आईएसओ प्रमाणन"
+  ],
+  "emd": [
+    "Earnest Money Deposit",
+    "EMD",
+    "Bid Security",
+    "बयाना राशि",
+    "ईएमडी",
+    "बोली प्रतिभूति"
+  ],
+  "epfo_registration": [
+    "EPFO Registration",
+    "EPF Registration",
+    "Provident Fund",
+    "PF Registration Number",
+    "ईपीएफओ पंजीकरण",
+    "भविष्य निधि"
+  ],
+  "esic_registration": [
+    "ESIC Registration",
+    "ESI Registration",
+    "Employee State Insurance",
+    "ईएसआईसी पंजीकरण"
+  ],
+  "net_worth": [
+    "Net Worth",
+    "Net Worth Certificate",
+    "Positive Net Worth",
+    "निवल मूल्य",
+    "नेटवर्थ"
+  ],
+  "blacklist_declaration": [
+    "Not Blacklisted",
+    "No Blacklisting",
+    "Non-Debarment Declaration",
+    "Self Declaration Not Blacklisted",
+    "काली सूची में नहीं",
+    "प्रतिबंधित नहीं"
+  ],
+  "near_relations": [
+    "Near Relations Declaration",
+    "No Near Relations",
+    "Relatives in CRPF",
+    "Declaration of Near Relations",
+    "निकट संबंधी घोषणा"
+  ],
+  "integrity_pact": [
+    "Integrity Pact",
+    "Signed Integrity Pact",
+    "Pre-Contract Integrity Pact",
+    "सत्यनिष्ठा समझौता"
+  ]
+}
