@@ -1,0 +1,103 @@
+{
+  "_comment": "BID-A — Golden path: all criteria PASS. Typed PDFs, clean extraction, high confidence.",
+  "bid_id": "BID-A",
+  "bid_name": "M/s Sharma Industrial Pvt Ltd",
+  "bidder_gstin": "07AAACS1234A1ZH",
+  "bidder_pan": "AAACS1234A",
+  "nit_reference": "NIT-CRPF-2025-001",
+  "submission_date": "2025-11-10",
+  "documents": [
+    {
+      "doc_id": "DOC-A-001",
+      "doc_type": "ca_certificate",
+      "filename": "sharma_ca_certificate.pdf",
+      "pages": 2,
+      "synthetic_content": {
+        "entity": "M/s Sharma Industrial Pvt Ltd",
+        "gstin": "07AAACS1234A1ZH",
+        "ca_name": "CA Rajesh Kumar (ICAI M.No. 012345)",
+        "fy_2022_23_turnover_inr": 55000000,
+        "fy_2023_24_turnover_inr": 60000000,
+        "fy_2024_25_turnover_inr": 65000000,
+        "average_annual_turnover_inr": 60000000,
+        "notes": "Certified average annual turnover Rs. Six Crores for FY 2022-23 to 2024-25"
+      }
+    },
+    {
+      "doc_id": "DOC-A-002",
+      "doc_type": "experience_cert",
+      "filename": "sharma_experience_certificate.pdf",
+      "pages": 3,
+      "synthetic_content": {
+        "projects": [
+          {"name": "Security Camera Installation — CISF Noida", "value_inr": 3500000, "year": 2023},
+          {"name": "Access Control System — BSF Jodhpur", "value_inr": 2800000, "year": 2022},
+          {"name": "CCTV Network — ITBP Haldwani", "value_inr": 4200000, "year": 2024},
+          {"name": "Perimeter Security — CRPF Delhi", "value_inr": 5100000, "year": 2023},
+          {"name": "Surveillance System — SSB Lucknow", "value_inr": 1800000, "year": 2021}
+        ],
+        "total_projects": 5,
+        "all_above_threshold": true
+      }
+    },
+    {
+      "doc_id": "DOC-A-003",
+      "doc_type": "gst_cert",
+      "filename": "sharma_gst_certificate.pdf",
+      "pages": 1,
+      "synthetic_content": {
+        "gstin": "07AAACS1234A1ZH",
+        "registration_date": "2017-07-01",
+        "status": "ACTIVE",
+        "taxpayer_type": "Regular"
+      }
+    },
+    {
+      "doc_id": "DOC-A-004",
+      "doc_type": "emd_document",
+      "filename": "sharma_bank_guarantee.pdf",
+      "pages": 1,
+      "synthetic_content": {
+        "bg_number": "BG/SBI/ND/2025/00042",
+        "issuing_bank": "State Bank of India, Connaught Place Branch",
+        "amount_inr": 1000000,
+        "validity_date": "2026-08-15",
+        "beneficiary": "CRPF PHQ New Delhi",
+        "nit_reference": "NIT-CRPF-2025-001"
+      }
+    },
+    {
+      "doc_id": "DOC-A-005",
+      "doc_type": "self_declaration",
+      "filename": "sharma_near_relations_declaration.pdf",
+      "pages": 1,
+      "synthetic_content": {
+        "declaration_text": "I/We hereby declare that no proprietor/partner/director of our firm has any near relation employed in CRPF in a position to influence the tender evaluation process. This declaration is true to the best of our knowledge.",
+        "signatory": "Ramesh Sharma, Managing Director",
+        "date": "2025-11-08",
+        "notarized": true
+      }
+    },
+    {
+      "doc_id": "DOC-A-006",
+      "doc_type": "integrity_pact",
+      "filename": "sharma_integrity_pact.pdf",
+      "pages": 2,
+      "synthetic_content": {
+        "template_version": "CRPF-IP-2024-v1",
+        "template_hash": "sha256:a3b4c5d6e7f8901234567890abcdef1234567890abcdef1234567890abcdef12",
+        "signed": true,
+        "signatories": ["Ramesh Sharma (Bidder)", "CRPF Procurement Officer (Witness)"],
+        "date": "2025-11-08"
+      }
+    }
+  ],
+  "expected_vtm": {
+    "C001": {"verdict": "PASS", "value": 60000000, "confidence": 0.95},
+    "C002": {"verdict": "PASS", "value": 5, "confidence": 0.92},
+    "C003": {"verdict": "PASS", "value": true, "confidence": 0.98},
+    "C004": {"verdict": "PASS", "value": 1000000, "confidence": 0.90},
+    "C005": {"verdict": "PASS", "value": true, "confidence": 0.93},
+    "C006": {"verdict": "PASS", "value": true, "confidence": 0.97}
+  }
+}

@@ -1,0 +1,118 @@
+# CocoMind Tier-1 Build — Walkthrough
+
+## What Was Built
+
+The complete Tier-1 implementation of **CocoMind**, an AI-assisted CRPF Tender Evaluation Platform. 35+ source files across 8 phases.
+
+### Architecture Diagram
+
+```mermaid
+graph TB
+    subgraph Ingestion
+        A[PDF/DOCX/IMG/ZIP] --> B[Magic-byte Sniffing]
+        B --> C[SHA-256 Hash]
+        C --> D[Doc-type Heuristic]
+    end
+
+    subgraph OCR
+        D --> E[Azure Document Intelligence]
+        E --> F[Word-level BBox + Confidence]
+    end
+
+    subgraph PII Redaction
+        F --> G[Presidio + 6 Indian Recognisers]
+        G --> H[UUID Reversible Tokens]
+    end
+
+    subgraph Retrieval
+        H --> I[Spatial Chunker]
+        I --> J[BGE-M3 Dense]
+        I --> K[Whoosh BM25 Sparse]
+        J --> L[RRF Fusion]
+        K --> L
+    end
+
+    subgraph Extraction
+        L --> M[Claude Tool-use]
+        M --> N[Normalised Values]
+    end
+
+    subgraph Evaluation
+        N --> O[Conflict Resolver]
+        O --> P["Rule Engine (Pure Python)"]
+        P --> Q[VTM Row]
+    end
+
+    subgraph Output
+        Q --> R[Audit Chain]
+        Q --> S[Streamlit Dashboard]
+        Q --> T[RTI Export]
+    end
+```
+
+---
+
+## Key Files Created
+
+| Phase | File | Purpose |
+|-------|------|---------|
+| 1 | [pyproject.toml](file:///d:/Projects/CocoMind/pyproject.toml) | Dependencies + import-linter contract |
+| 1 | [settings.py](file:///d:/Projects/CocoMind/src/config/settings.py) | Central config from env vars |
+| 1 | [synonym_map.json](file:///d:/Projects/CocoMind/src/config/synonym_map.json) | 13 criterion categories × 6+ variants |
+| 1 | [models/](file:///d:/Projects/CocoMind/src/models/) | 8 Pydantic files: documents, criteria, extraction, verdicts, audit, hitl, auth, prompts |
+| 2 | [ingestion/service.py](file:///d:/Projects/CocoMind/src/ingestion/service.py) | PDF/DOCX/IMG/ZIP intake with PyMuPDF |
+| 2 | [ocr/azure_service.py](file:///d:/Projects/CocoMind/src/ocr/azure_service.py) | Azure DI adapter + confidence floor |
+| 2 | [redaction/presidio_pipeline.py](file:///d:/Projects/CocoMind/src/redaction/presidio_pipeline.py) | Presidio + UUID tokenisation |
+| 2 | [redaction/indian_recognizers.py](file:///d:/Projects/CocoMind/src/redaction/indian_recognizers.py) | Aadhaar (Verhoeff), PAN, GSTIN, EPFO, ESIC, IFSC |
+| 2 | [retrieval/chunker.py](file:///d:/Projects/CocoMind/src/retrieval/chunker.py) | Spatial-proximity word grouping |
+| 2 | [retrieval/embedder.py](file:///d:/Projects/CocoMind/src/retrieval/embedder.py) | BGE-M3 + ChromaDB vector store |
+| 2 | [retrieval/bm25_index.py](file:///d:/Projects/CocoMind/src/retrieval/bm25_index.py) | Whoosh BM25 sparse index |
+| 2 | [retrieval/hybrid_retriever.py](file:///d:/Projects/CocoMind/src/retrieval/hybrid_retriever.py) | RRF fusion + synonym expansion |
+| 3 | [engine/rule_engine.py](file:///d:/Projects/CocoMind/src/engine/rule_engine.py) | **Legal defensibility core** — pure Python, 6 operators, LLM-free |
+| 3 | [audit/chain.py](file:///d:/Projects/CocoMind/src/audit/chain.py) | Hash-chained SQLite + Merkle root + RTI export |
+| 3 | [conflict/resolver.py](file:///d:/Projects/CocoMind/src/conflict/resolver.py) | 5-level doc-type hierarchy |
+| 4 | [extraction/criterion_extractor.py](file:///d:/Projects/CocoMind/src/extraction/criterion_extractor.py) | Claude tool-use for NIT parsing |
+| 4 | [extraction/value_extractor.py](file:///d:/Projects/CocoMind/src/extraction/value_extractor.py) | Indian financial normalisation |
+| 4 | [checkers/](file:///d:/Projects/CocoMind/src/checkers/) | blacklist, near_relations, EMD, integrity_pact |
+| 4 | [pipeline/orchestrator.py](file:///d:/Projects/CocoMind/src/pipeline/orchestrator.py) | End-to-end pipeline |
+| 5 | [rbac/middleware.py](file:///d:/Projects/CocoMind/src/rbac/middleware.py) | Role/permission guards |
+| 5 | [api/routes.py](file:///d:/Projects/CocoMind/src/api/routes.py) | FastAPI with RBAC |
+| 6 | [dashboard.py](file:///d:/Projects/CocoMind/ui-streamlit/dashboard.py) | 4-page Streamlit demo |
+| 7 | [tests/](file:///d:/Projects/CocoMind/tests/) | Rule engine, audit, conflict, recognisers, red-team |
+| 7 | [ci.yml](file:///d:/Projects/CocoMind/.github/workflows/ci.yml) | GitHub Actions CI |
+| 8 | [data/](file:///d:/Projects/CocoMind/data/) | CVC debarment CSV, ground truth verdicts |
+
+---
+
+## Security Architecture
+
+| Control | Implementation |
+|---------|---------------|
+| PII Redaction | Presidio + 6 custom Indian recognisers; UUID tokens; LLM sees only redacted text |
+| Rule Engine Isolation | `import-linter` contract enforces zero LLM imports in `src.engine` |
+| Audit Integrity | SQLite triggers block UPDATE/DELETE; verify_chain() re-derives all hashes |
+| RBAC | 6 personas with least-privilege; denied access is audit-logged |
+| Prompt Injection | Rule engine is pure Python — 10 red-team payloads confirmed immune |
+
+---
+
+## What Was Tested
+
+| Test Suite | Coverage |
+|------------|----------|
+| [test_rule_engine.py](file:///d:/Projects/CocoMind/tests/unit/test_rule_engine.py) | All 6 operators, edge cases, date formats, mandatory vs optional |
+| Hypothesis property tests | 250+ examples: gte threshold, confidence boundary, none-value invariant |
+| [test_audit_chain.py](file:///d:/Projects/CocoMind/tests/unit/test_audit_chain.py) | Write/read, chain integrity, append-only (UPDATE/DELETE blocked), Merkle root, RTI export |
+| [test_conflict_resolver.py](file:///d:/Projects/CocoMind/tests/unit/test_conflict_resolver.py) | No conflict, hierarchy resolution, same-rank disagreement → HITL |
+| [test_indian_recognizers.py](file:///d:/Projects/CocoMind/tests/unit/test_indian_recognizers.py) | PAN, GSTIN, IFSC, EPFO |
+| [test_prompt_injection.py](file:///d:/Projects/CocoMind/tests/red_team/test_prompt_injection.py) | 10 adversarial payloads against rule engine |
+
+---
+
+## Next Steps for Tier-2
+
+1. Connect Azure OCR in prod (replace stubs with live API calls)
+2. MeriPehchaan OIDC integration (replace header-based auth)
+3. DSC (Digital Signature Certificate) via eSign 2.0 API
+4. PostgreSQL + Alembic migrations (replace SQLite audit)
+5. Deploy Streamlit behind Azure App Service with RBAC proxy
