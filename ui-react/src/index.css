@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0a0f1e;
+  --color-surface: #1e293b;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Poppins", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-slate-200 antialiased font-sans;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-surface/70 backdrop-blur-xl border border-primary-500/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-2xl;
+  }
+  
+  .badge-pass {
+    @apply inline-flex items-center bg-gradient-to-br from-emerald-400 to-emerald-600 text-white px-3.5 py-1 rounded-full text-xs font-bold tracking-wide shadow-[0_0_12px_rgba(16,185,129,0.4)];
+  }
+
+  .badge-fail {
+    @apply inline-flex items-center bg-gradient-to-br from-red-400 to-red-600 text-white px-3.5 py-1 rounded-full text-xs font-bold tracking-wide shadow-[0_0_12px_rgba(239,68,68,0.4)];
+  }
+
+  .badge-ambiguous {
+    @apply inline-flex items-center bg-gradient-to-br from-amber-400 to-amber-600 text-white px-3.5 py-1 rounded-full text-xs font-bold tracking-wide shadow-[0_0_12px_rgba(245,158,11,0.4)];
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-br from-primary-500 via-accent-500 to-purple-400 bg-clip-text text-transparent;
+  }
+}
