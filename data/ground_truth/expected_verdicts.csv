@@ -1,4 +1,5 @@
 bid_id,criterion_id,criterion_name,expected_verdict,notes
+<<<<<<< HEAD
 BID-A,C001,Average Annual Turnover,PASS,"₹6,00,00,000 from CA cert. Threshold ₹5,00,00,000. Expression: 60000000 >= 50000000"
 BID-A,C002,Similar Works Experience,PASS,"5 projects submitted, each ≥ ₹10L. Threshold ≥ 3. Expression: 5 >= 3"
 BID-A,C003,GST Registration,PASS,"Valid GSTIN 07AAACS1234A1ZH found. Expression: bool(True) = True"
@@ -11,3 +12,17 @@ BID-B,C003,GST Registration,PASS,"Valid GSTIN 09AABCV1234B1Z5. Expression: bool(
 BID-B,C004,EMD / Bank Guarantee,PASS,"BG ₹8,00,000 valid till 2026-09-01. Threshold ₹5,00,000 and ≥45 days validity"
 BID-C,C001,Average Annual Turnover,AMBIGUOUS,"Handwritten CA cert (₹5.2Cr) conflicts with cover letter (₹4.8Cr). Delta 8.3% > 5% threshold. Doc-type hierarchy cannot resolve. → HITL"
 BID-C,C005,Near Relations Declaration,AMBIGUOUS,"Non-standard phrasing. CRPF not mentioned. Keywords not found. OCR conf 0.45 LLM conf 0.40 < 0.70 floor → HITL"
+=======
+BID-A,C001,Average Annual Turnover,PASS,"Rs 6 Crore from CA cert, threshold Rs 5 Crore"
+BID-A,C002,Similar Works Experience,PASS,"5 projects, threshold 3"
+BID-A,C003,GST Registration,PASS,Valid GSTIN found
+BID-A,C004,EMD / Bank Guarantee,PASS,BG 10L valid till Aug 2026
+BID-A,C005,Near Relations Declaration,PASS,Clear declaration
+BID-A,C006,Integrity Pact,PASS,Signed copy attached
+BID-B,C001,Average Annual Turnover,PASS,"Rs 7.5 Crore, threshold Rs 5 Crore"
+BID-B,C002,Similar Works Experience,FAIL,"1 project < threshold 3"
+BID-B,C003,GST Registration,PASS,Valid GSTIN
+BID-B,C004,EMD / Bank Guarantee,PASS,Valid BG
+BID-C,C001,Average Annual Turnover,AMBIGUOUS,"Handwritten CA cert conflicts with cover letter"
+BID-C,C005,Near Relations Declaration,AMBIGUOUS,Declaration unclear
+>>>>>>> 17e3b14dd696e9a289f7ea46f434d7c7a527ce8c
