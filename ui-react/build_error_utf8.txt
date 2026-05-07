@@ -4,15 +4,14 @@
 
 [36mvite v8.0.10 [32mbuilding client environment for production...[36m[39m
 [2K
-node.exe : Error: Cannot apply unknown utility class `bg-background`. Are you using CSS modules or similar and missing 
-`@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+node.exe : Error: Cannot apply unknown utility class `bg-background`
 At line:1 char:1
 + & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
 + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (Error: Cannot a...rence-directive:String) [], RemoteException
+    + CategoryInfo          : NotSpecified: (Error: Cannot a...`bg-background`:String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
  
-    at onInvalidCandidate (D:\Projects\CocoMind-main\ui-react\node_modules\tailwindcss\dist\lib.js:21:1314)
+    at onInvalidCandidate (D:\Projects\CocoMind-main\ui-react\node_modules\tailwindcss\dist\lib.js:21:1511)
     at Ne (D:\Projects\CocoMind-main\ui-react\node_modules\tailwindcss\dist\lib.js:16:38252)
     at D:\Projects\CocoMind-main\ui-react\node_modules\tailwindcss\dist\lib.js:21:355
     at Ur (D:\Projects\CocoMind-main\ui-react\node_modules\tailwindcss\dist\lib.js:3:1733)
@@ -22,15 +21,14 @@ At line:1 char:1
     at async kn (D:\Projects\CocoMind-main\ui-react\node_modules\tailwindcss\dist\lib.js:38:631)
     at async Xr (D:\Projects\CocoMind-main\ui-react\node_modules\@tailwindcss\node\dist\index.js:10:3415)
     at async E (D:\Projects\CocoMind-main\ui-react\node_modules\@tailwindcss\postcss\dist\index.js:10:3979)
-[31mΓ£ù[39m Build failed in 782ms
 transforming...Γ£ô 2144 modules transformed.
+[31mΓ£ù[39m Build failed in 920ms
 [31merror during build:
 [31mBuild failed with 1 error:
 
 [plugin vite:css] D:/Projects/CocoMind-main/ui-react/src/index.css:1:0
 CssSyntaxError: [postcss] tailwindcss: D:/Projects/CocoMind-main/ui-react/src/index.css:1:1: Cannot apply unknown 
-utility class `bg-background`. Are you using CSS modules or similar and missing `@reference`? 
-https://tailwindcss.com/docs/functions-and-directives#reference-directive
+utility class `bg-background`
     at Input.error (D:\Projects\CocoMind-main\ui-react\node_modules\postcss\lib\input.js:135:16)
     at Root.error (D:\Projects\CocoMind-main\ui-react\node_modules\postcss\lib\node.js:146:32)
     at Object.Once (D:\Projects\CocoMind-main\ui-react\node_modules\@tailwindcss\postcss\dist\index.js:10:6913)

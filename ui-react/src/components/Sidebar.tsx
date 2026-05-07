@@ -1,15 +1,10 @@
 
-import { NavLink } from 'react-router-dom';
-import { Brain, LayoutDashboard, Search, FileDown, ShieldCheck } from 'lucide-react';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Brain, FileDown, LayoutDashboard, LogOut, Search, ShieldCheck } from 'lucide-react';
+import { clearUser, getStoredUser } from '../api';
+import { cn } from '../lib/utils';
 
 const navItems = [
-  { path: '/', label: 'Home', icon: Brain },
   { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { path: '/hitl', label: 'HITL Review', icon: Search },
   { path: '/rti', label: 'RTI Export', icon: FileDown },
@@ -17,31 +12,39 @@ const navItems = [
 ];
 
 export function Sidebar() {
+  const navigate = useNavigate();
+  const user = getStoredUser();
+
+  function logout() {
+    clearUser();
+    navigate('/login');
+  }
+
   return (
-    <aside className="w-64 border-r border-indigo-500/20 bg-surface/50 backdrop-blur-xl flex flex-col h-screen sticky top-0">
-      <div className="p-6 text-center space-y-2">
-        <div className="flex justify-center mb-4">
-          <Brain className="w-12 h-12 text-primary-500" />
+    <aside className="border-b border-neutral-300/50 bg-surface lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-64 lg:flex-col lg:border-b-0 lg:border-r">
+      <div className="p-4 text-center space-y-2 lg:p-6">
+        <div className="flex justify-center lg:mb-4">
+          <Brain className="w-10 h-10 text-primary-500 lg:h-12 lg:w-12" />
         </div>
-        <h1 className="text-2xl font-bold font-display gradient-text">CocoMind</h1>
-        <p className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">
+        <h1 className="text-xl font-bold font-display text-neutral-900 lg:text-2xl">CocoMind</h1>
+        <p className="text-[10px] uppercase tracking-widest text-neutral-500 font-semibold">
           CRPF Tender Evaluation
         </p>
       </div>
 
-      <div className="px-6 py-4">
-        <h2 className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-4">Navigation</h2>
-        <nav className="space-y-1">
+      <div className="px-4 pb-4 lg:px-6 lg:py-4">
+        <h2 className="hidden text-[10px] uppercase tracking-widest text-neutral-500 font-bold mb-4 lg:block">Navigation</h2>
+        <nav className="flex gap-2 overflow-x-auto lg:block lg:space-y-1 lg:overflow-visible">
           {navItems.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
               className={({ isActive }) =>
                 cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                  "flex shrink-0 items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 lg:gap-3",
                   isActive 
-                    ? "bg-primary-500/15 text-primary-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] border border-primary-500/20" 
-                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
+                    ? "bg-primary-500/10 text-primary-600 font-bold" 
+                    : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100"
                 )
               }
             >
@@ -52,13 +55,23 @@ export function Sidebar() {
         </nav>
       </div>
 
-      <div className="mt-auto p-6">
-        <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 text-center">
-          <p className="text-amber-400 text-xs font-bold mb-1 flex items-center justify-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+      <div className="mt-auto hidden p-6 lg:block">
+        {user && (
+          <div className="mb-4 rounded-xl border border-neutral-200 bg-neutral-50 p-4">
+            <p className="text-sm font-bold text-neutral-900">{user.name}</p>
+            <p className="text-[10px] uppercase tracking-wider text-neutral-500">{user.role}</p>
+            <button type="button" onClick={logout} className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-neutral-500 hover:text-neutral-900">
+              <LogOut className="h-3.5 w-3.5" />
+              Logout
+            </button>
+          </div>
+        )}
+        <div className="bg-semantic-warning/10 border border-semantic-warning/20 rounded-xl p-4 text-center">
+          <p className="text-semantic-warning text-xs font-bold mb-1 flex items-center justify-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-semantic-warning animate-pulse"></span>
             TIER-1 DEMO
           </p>
-          <p className="text-[10px] text-slate-400">
+          <p className="text-[10px] text-neutral-500">
             Synthetic data only.<br />DSC = dev certificate.
           </p>
         </div>

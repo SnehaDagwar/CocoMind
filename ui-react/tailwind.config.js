@@ -11,15 +11,31 @@ export default {
         display: ['Poppins', 'sans-serif'],
       },
       colors: {
-        background: '#0a0f1e',
-        surface: '#1e293b',
+        background: '#F3F4F6',
+        surface: '#FFFFFF',
         primary: {
-          500: '#6366f1',
-          600: '#4f46e5',
+          500: '#FF6857',
+          600: '#e55a4a',
         },
-        accent: {
-          500: '#8b5cf6',
-          600: '#7c3aed',
+        secondary: {
+          orange: '#FFA94D',
+          teal: '#4DB6AC',
+          blue: '#4A90E2',
+          mint: '#E6F6F1',
+        },
+        neutral: {
+          900: '#1F2937',
+          700: '#4B5563',
+          500: '#9CA3AF',
+          300: '#E5E7EB',
+          100: '#F3F4F6',
+        },
+        semantic: {
+          success: '#22C55E',
+          warning: '#F59E0B',
+          error: '#EF4444',
+          info: '#3B82F6',
+          purple: '#8B5CF6',
         }
       }
     },

@@ -1,0 +1,73 @@
+CocoMind MVP Run Instructions
+============================
+
+Run these commands from:
+
+    d:\Projects\CocoMind-main
+
+
+1. Install backend dependencies
+-------------------------------
+
+    uv sync --extra dev
+
+
+2. Start the FastAPI backend
+----------------------------
+
+    .\.venv\Scripts\python.exe -m uvicorn src.api.routes:app --host 127.0.0.1 --port 8000
+
+Backend health check:
+
+    http://127.0.0.1:8000/api/health
+
+
+3. Start the React frontend
+---------------------------
+
+Open a second PowerShell terminal:
+
+    cd ui-react
+    npm install
+    npm run dev -- --host 127.0.0.1 --port 5173
+
+Open the app:
+
+    http://127.0.0.1:5173
+
+
+4. Use the app
+--------------
+
+1. Select "Procurement Officer" on the login page.
+2. Create a tender.
+3. Open the tender workspace.
+4. Upload any NIT file.
+5. Click "Extract Criteria".
+6. Add bidders:
+   - BID-A
+   - BID-B
+   - BID-C
+7. Start evaluation.
+8. Review VTM results.
+9. Login as "HITL Reviewer" to resolve manual review items.
+10. Generate the final report.
+11. Verify audit and export.
+
+
+5. Optional frontend checks
+---------------------------
+
+    cd ui-react
+    npm run build
+    npm run lint
+
+
+6. Optional backend API tests
+-----------------------------
+
+After dev dependencies are installed:
+
+    cd d:\Projects\CocoMind-main
+    .\.venv\Scripts\python.exe -m pytest tests\api\test_workflow_api.py -q
+
